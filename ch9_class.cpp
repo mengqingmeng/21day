@@ -35,6 +35,7 @@ class Human{
         }
 };
 
+// 析构函数的使用
 class MyString{
     private:
         char* buffer;
@@ -42,20 +43,47 @@ class MyString{
     public:
         MyString(const char* initString){
             if(initString != NULL){
-
+                buffer = new char[strlen(initString) + 1];
+                strcpy(buffer, initString);
+            }else {
+                buffer = NULL;
             }
+        }
+        ~MyString(){
+            cout << "Invoking destructor,clearing up" << endl;
+            if (buffer != NULL)
+                delete []buffer;
+        }
+
+        int GetLength(){
+            return strlen(buffer);
+        }
+
+        const char* GetString(){
+            return buffer;
         }
 };
 
 // 类的使用
 void TestClass();
 
+// 测试析构函数
+void TestDestructor();
+
 int main(){
 
-    TestClass();
+    // TestClass();
+    TestDestructor();
     return 0;
 }
 
+
+void TestDestructor(){
+    MyString sayHello("Hello");
+    cout << "string buffer in sayHello is " << sayHello.GetLength();
+    cout << " characters long" << endl;
+    cout << "buffer contains:" << sayHello.GetString() << endl;
+}
 
 void TestClass(){
     Human man("HI",2);
