@@ -40,7 +40,7 @@ class MyString{
         char* buffer;
 
     public:
-        MyString(const char* initString){
+        MyString(const char* initString){ // 构造函数
             if(initString != NULL){
                 buffer = new char[strlen(initString) + 1];
                 strcpy(buffer, initString);
@@ -48,7 +48,7 @@ class MyString{
                 buffer = NULL;
             }
         }
-        ~MyString(){
+        ~MyString(){ // 析构函数
             cout << "Invoking destructor,clearing up" << endl;
             if (buffer != NULL)
                 delete []buffer;
@@ -62,6 +62,8 @@ class MyString{
             return buffer;
         }
 };
+
+// 
 
 // 类的使用
 void TestClass();
